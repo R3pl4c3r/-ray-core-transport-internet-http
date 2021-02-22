@@ -8,14 +8,14 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/v2fly/v2ray-core/v4/common"
-	"github.com/v2fly/v2ray-core/v4/common/buf"
-	"github.com/v2fly/v2ray-core/v4/common/net"
-	"github.com/v2fly/v2ray-core/v4/common/protocol/tls/cert"
-	"github.com/v2fly/v2ray-core/v4/testing/servers/tcp"
-	"github.com/v2fly/v2ray-core/v4/transport/internet"
-	. "github.com/v2fly/v2ray-core/v4/transport/internet/http"
-	"github.com/v2fly/v2ray-core/v4/transport/internet/tls"
+	"github.com/xtls/xray-core/common"
+	"github.com/xtls/xray-core/common/buf"
+	"github.com/xtls/xray-core/common/net"
+	"github.com/xtls/xray-core/common/protocol/tls/cert"
+	"github.com/xtls/xray-core/testing/servers/tcp"
+	"github.com/xtls/xray-core/transport/internet"
+	. "github.com/xtls/xray-core/transport/internet/http"
+	"github.com/xtls/xray-core/transport/internet/tls"
 )
 
 func TestHTTPConnection(t *testing.T) {
@@ -26,7 +26,7 @@ func TestHTTPConnection(t *testing.T) {
 		ProtocolSettings: &Config{},
 		SecurityType:     "tls",
 		SecuritySettings: &tls.Config{
-			Certificate: []*tls.Certificate{tls.ParseCertificate(cert.MustGenerate(nil, cert.CommonName("www.v2fly.org")))},
+			Certificate: []*tls.Certificate{tls.ParseCertificate(cert.MustGenerate(nil, cert.CommonName("www.example.com")))},
 		},
 	}, func(conn internet.Connection) {
 		go func() {
@@ -56,7 +56,7 @@ func TestHTTPConnection(t *testing.T) {
 		ProtocolSettings: &Config{},
 		SecurityType:     "tls",
 		SecuritySettings: &tls.Config{
-			ServerName:    "www.v2fly.org",
+			ServerName:    "www.example.com",
 			AllowInsecure: true,
 		},
 	})

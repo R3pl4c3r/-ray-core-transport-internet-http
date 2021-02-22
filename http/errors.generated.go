@@ -1,6 +1,6 @@
 package http
 
-import "github.com/v2fly/v2ray-core/v4/common/errors"
+import "github.com/xtls/xray-core/common/errors"
 
 type errPathObjHolder struct{}
 
